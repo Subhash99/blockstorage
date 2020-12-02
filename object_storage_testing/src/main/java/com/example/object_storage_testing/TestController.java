@@ -55,36 +55,36 @@ public class TestController {
 
     }
 
-//    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-//    public void postTest(@RequestParam("file") MultipartFile file) throws IOException, ServerException, InsufficientDataException, InternalException, InvalidResponseException, InvalidKeyException, NoSuchAlgorithmException, XmlParserException, ErrorResponseException {
-//        System.out.println(file.getSize());
-//        MinioClient minioClient =
-//                MinioClient.builder()
-//                        .endpoint("objectstore.e2enetworks.net")
-//                        .credentials("5MWX2PWZZRDOZIL6P30Q", "C3BI0T7E77A3YQ6U7OYGFA4VA4Y0C06YC1X5AN4X")
-//                        .build();
-//        boolean found = minioClient.bucketExists(BucketExistsArgs.builder().bucket("traklabstest").build());
-//        System.out.println("bucket existance: "+ found);
-//
-//        InputStream inputStream = new ByteArrayInputStream(file.getBytes());
-//        System.out.println("system");
-//        minioClient.putObject(
-//                PutObjectArgs.builder().bucket("traklabstest").object("a.mp4").stream(
-//                        inputStream, -1, 10485760)
-//                        .contentType("video/mp4")
-//                        .build());
-//        System.out.println(file);
-//
-//    }
-
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public void postTest(HttpServletRequest request) throws IOException, ServerException, InsufficientDataException, InternalException, InvalidResponseException, InvalidKeyException, NoSuchAlgorithmException, XmlParserException, ErrorResponseException {
-        try {
-            InputStream is = request.getInputStream();
-            // Process and Store image in database
-        } catch (IOException e) {
-            // handle exception
-        }
+    public void postTest(@RequestParam("file") MultipartFile file) throws IOException, ServerException, InsufficientDataException, InternalException, InvalidResponseException, InvalidKeyException, NoSuchAlgorithmException, XmlParserException, ErrorResponseException {
+        System.out.println(file.getSize());
+        MinioClient minioClient =
+                MinioClient.builder()
+                        .endpoint("objectstore.e2enetworks.net")
+                        .credentials("5MWX2PWZZRDOZIL6P30Q", "C3BI0T7E77A3YQ6U7OYGFA4VA4Y0C06YC1X5AN4X")
+                        .build();
+        boolean found = minioClient.bucketExists(BucketExistsArgs.builder().bucket("traklabstest").build());
+        System.out.println("bucket existance: "+ found);
+
+        InputStream inputStream = new ByteArrayInputStream(file.getBytes());
+        System.out.println("system");
+        minioClient.putObject(
+                PutObjectArgs.builder().bucket("traklabstest").object("a.mp4").stream(
+                        inputStream, -1, 10485760)
+                        .contentType("video/mp4")
+                        .build());
+        System.out.println(file);
+
     }
+
+//    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+//    public void postTest(HttpServletRequest request) throws IOException, ServerException, InsufficientDataException, InternalException, InvalidResponseException, InvalidKeyException, NoSuchAlgorithmException, XmlParserException, ErrorResponseException {
+//        try {
+//            InputStream is = request.getInputStream();
+//            // Process and Store image in database
+//        } catch (IOException e) {
+//            // handle exception
+//        }
+//    }
 
 }
